@@ -6,15 +6,14 @@ STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla"
 
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
-API_ALPHA = 'M24DFEHHP2CEJZ90'
-#API_ALPHA = '9ZID9DTL0JYQ1431'
+API_ALPHA = os.environ.get("API_ALPHA")
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
-API_NEWS = "4b44f1d171df4ac7bdaed507188c4474"
+API_NEWS = os.environ.get("API_NEWS")
 
-ACCOUNT_SID = 'ACc9968fc5d93329e0c14601e79ac74c1b'
-AUTH_TOKEN = '021984ed2979d8fc5b07b4a77f802952'
-RECEIVER_NUMBER = '+48732187642'
-TWILLO_NUMBER = '+17722766916'
+TWILLO_NUMBER = os.environ.get("TWILLO_NUMBER")
+RECEIVER_NUMBER = os.environ.get("RECEIVER_NUMBER")
+ACCOUNT_SID = os.environ.get("ACCOUNT_SID")
+AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
 
 
 def close_price_2_days():
