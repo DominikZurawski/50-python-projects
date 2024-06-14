@@ -16,6 +16,9 @@ ACCOUNT_SID = os.environ.get("ACCOUNT_SID")
 AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
 
 
+percentage_diff = None
+up_down = None
+
 def close_price_2_days():
     parameters = {
         'function': "TIME_SERIES_DAILY",
@@ -32,9 +35,16 @@ def close_price_2_days():
     close_prices = (new_data[list(new_data)[0]]['4. close'], new_data[list(new_data)[1]]['4. close'])
     print(close_prices)
     diff = float(close_prices[0]) - float(close_prices[1])
-    #abs_diff = abs(diff)
-    print(diff)
-    percentage_diff = (diff / float(close_prices[0])) * 100
+
+    global  up_down , percentage_diff
+    if diff > 0:
+        up_down = "🔺"
+    else:
+        up_down = "🔻"
+
+    percentage_diff = round((diff / float(close_prices[0])) * 100)
+    print(percentage_diff)
+
     return percentage_diff
 
 
@@ -51,7 +61,9 @@ def news():
     #print(response.json())
     data = response.json()
 
-    articles = [f"Headline: {msg['title']}. \nBrief:{msg['description']}" for msg in data['articles'][:3]]
+    global percentage_diff
+
+    articles = [f"{STOCK_NAME}: {up_down}{percentage_diff}%\nHeadline: {msg['title']}. \nBrief:{msg['description']}" for msg in data['articles'][:3]]
     for article in articles:
         send_sms(article)
 
@@ -70,5 +82,6 @@ def send_sms(msg):
     print(message.status)
 
 
-if close_price_2_days() > 3:
+if abs(close_price_2_days()) > 5:
     news()
+
