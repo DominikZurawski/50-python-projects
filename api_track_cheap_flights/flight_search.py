@@ -2,8 +2,8 @@ import os
 from dotenv import load_dotenv
 import requests
 from datetime import datetime, timedelta
-load_dotenv()
 
+load_dotenv()
 
 
 class FlightSearch:
