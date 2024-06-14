@@ -15,6 +15,8 @@ RECEIVER_NUMBER = os.environ.get("RECEIVER_NUMBER")
 ACCOUNT_SID = os.environ.get("ACCOUNT_SID")
 AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
 
+percentage_diff = None
+up_down = None
 
 percentage_diff = None
 up_down = None
