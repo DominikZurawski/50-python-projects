@@ -15,13 +15,12 @@ weekday = now.weekday()
 # Send motivated quote on every Monday
 if weekday == 1:
     try:
-        # Odczytaj plik tekstowy
         with open("quotes.txt", "r") as file:
             lines = file.readlines()
     except FileNotFoundError:
         print("Not found a file")
     else:
-        # Utwórz słownik
+        # create dictionary
         for i, line in enumerate(lines, start=0):
             if "-" in line:
                 quote, author = line.split(" - ", 1)
