@@ -1,3 +1,3 @@
-# 25-projects-in-python
+# 45 projects in Python
 
  It contains Python programs
