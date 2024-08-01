@@ -4,10 +4,6 @@ from tkinter.simpledialog import askstring
 from PIL import ImageTk, Image, ImageFont, ImageDraw
 from tkinter import filedialog
 import os
-
-from PIL.Image import Resampling
-
-
 def openfn():
     filename = filedialog.askopenfilename(title='open')
     return filename
@@ -25,12 +21,18 @@ class App(Tk):
     def __init__(self):
         super().__init__()
 
-        self.geometry("175x140+400+150")
-        self.title('Image Viewer')
+        self.geometry("675x140+400+150")
+        self.title('Watermark Image')
         self.resizable(width=True, height=True)
-        self.configure(background='white')
+        # self.configure(background='white')
 
         self.create_widgets()
+
+    def save_image(self):
+        new_file_name = "picture" + ".png"
+        imgpil = ImageTk.getimage(self.img_label.image)
+        imgpil.save(os.path.join("", new_file_name), "PNG")
+        imgpil.close()
 
     def calculate_proportion(self, img):
         window_width = 1000
@@ -42,7 +44,7 @@ class App(Tk):
         return new_width, new_height
 
     def add_text(self, font_size=24, color="white"):
-        watermark_text = askstring("Znak wodny", "Wprowadź tekst znaku wodnego:")
+        watermark_text = askstring("Watermark", "Input text:")
 
         img = ImageTk.getimage(self.main_img)
         width, height = img.size
@@ -139,9 +141,12 @@ class App(Tk):
                                       font=("Helvetica", 12, "bold"), bg="#0074D9", fg="white")
         self.add_logo_button = Button(self.frame, text="Add logo", command=self.add_logo, height=1, width=15,
                                       font=("Helvetica", 12, "bold"), bg="#0074D9", fg="white")
+        self.add_save_button = Button(self.frame, text="Save", command=self.save_image, height=1, width=15,
+                                      font=("Helvetica", 12, "bold"), bg="#0074D9", fg="white")
 
         self.add_text_button.grid(row=0, column=0, columnspan=2, padx=10, pady=3)
-        self.add_logo_button.grid(row=0, column=4, columnspan=2, padx=10, pady=3)
+        self.add_logo_button.grid(row=0, column=3, columnspan=2, padx=10, pady=3)
+        self.add_save_button.grid(row=0, column=5, columnspan=2, padx=10, pady=3)
 
     def add_img_watermark(self, count=1):
         img = ImageTk.getimage(self.main_img)
@@ -172,7 +177,7 @@ class App(Tk):
 
     def create_widgets(self):
         self.frame = Frame(self)
-        self.frame.grid(row=0, column=0, columnspan=3)
+        self.frame.grid(row=0, column=0, columnspan=5)
         self.frame.grid(row=1, column=0, columnspan=5)
         self.frame.grid(row=2, column=0, columnspan=3)
         self.frame.grid(row=3, column=0, columnspan=1)
@@ -183,15 +188,14 @@ class App(Tk):
         self.frame.columnconfigure(2, weight=1)
         self.frame.columnconfigure(3, weight=1)
         self.frame.columnconfigure(4, weight=1)
+        self.frame.columnconfigure(5, weight=1)
 
         self.img_label = Label(self.frame)
         self.load_image_button = Button(self.frame, text='Load Image', command=self.load_image, height=1, width=15,
                                         font=("Helvetica", 12, "bold"), bg="#0074D9", fg="white")
 
         self.img_label.grid(row=1, column=1, columnspan=5, padx=3, pady=3)
-        self.load_image_button.grid(row=0, column=1, columnspan=4, padx=3, pady=5)
-
-
+        self.load_image_button.grid(row=0, column=1, columnspan=3, padx=250, pady=3)
 
 
 if __name__ == "__main__":
