@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
+
 URL = "https://orteil.dashnet.org/experiments/cookie/"
 
 # Optional - Keep the browser open (helps diagnose issues if the script crashes)

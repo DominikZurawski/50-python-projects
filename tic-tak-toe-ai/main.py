@@ -8,7 +8,6 @@ board_game = ["", " ", " ", " ", " ", " ", " ", " ", " ", " "]
 board_instr = ["", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 
-
 def print_header():
     print(
         """
@@ -17,9 +16,9 @@ def print_header():
       / \  | ||  / _____ / \  | / \||  / _____ / \  | / \||  \      
       | |  | ||  \_\____\| |  | |-|||  \_\____\| |  | \_/||  /_     
       \_/  \_/\____/     \_/  \_/ \|\____/     \_/  \____/\____\
-    
-    
-    
+
+
+
     """)
 
 
@@ -40,7 +39,7 @@ def print_board(board):
 
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
-    time.sleep(0.2)
+    time.sleep(0.1)
 
 
 def is_winner(board, player):
@@ -82,7 +81,7 @@ def get_computer_move(board, player):
 
 def player_move():
     choice = int(input("Please choose a number for X. "))
-    time.sleep(0.3)
+    time.sleep(0.2)
 
     # Check to see if the space is empty first
     if board_game[choice] == " ":

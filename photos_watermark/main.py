@@ -13,7 +13,7 @@ class WatermarkProperties:
     def __init__(self):
         self.size = 0.1
         self.opacity = 0.2
-        self.rotation = 10
+        self.rotation = 10 # TODO:
         self.logo_count = 1
 
 

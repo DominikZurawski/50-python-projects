@@ -44,7 +44,7 @@ class WordSpeedCounter:
         self.start_time = None
         self.words_typed = 0
 
-        self.text_label = tk.Text(self.root, height=5, width=52, font = font.Font(family='Helvetica', size=12, weight='bold'))
+        self.text_label = tk.Text(self.root, height=3, width=52, font = font.Font(family='Helvetica', size=12, weight='bold'))
         self.text_label.tag_configure("green", foreground="green")
         self.text_label.tag_configure("red", foreground="red")
         self.text_label.insert(tk.END, self.sample_text)
@@ -80,7 +80,7 @@ class WordSpeedCounter:
             start_index = content.index(words[index])
             end_index = start_index + len(words[index])
             self.text_label.tag_add(color, f"1.{start_index}", f"1.{end_index}")
-            see_index = f"1.{end_index + 200}"
+            see_index = f"1.{end_index + 73}"
             self.text_label.see(see_index)
             if wrong_index:
                 # self.text_label.tag_add("yellow", f"1.{start_index}", f"1.{end_index}")
